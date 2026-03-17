@@ -23,11 +23,18 @@ const findUserByIdentifier = async (identifier) => {
 };
 
 const saveFcmTokenForUser = async ({ userId, fcmToken }) => {
-  if (!fcmToken) return;
+  if (!fcmToken) {
+    console.log(`[Auth] No FCM token provided for user ${userId}. Skipping.`);
+    return;
+  }
+
+  console.log(`[Auth] Saving FCM token for user ${userId}: ${fcmToken.substring(0, 10)}...`);
 
   // Keep a token mapped to only one user to avoid cross-device echoes.
   await query("UPDATE users SET fcm_token = NULL WHERE fcm_token = $1", [fcmToken]);
   await query("UPDATE users SET fcm_token = $1 WHERE id = $2", [fcmToken, userId]);
+  
+  console.log(`[Auth] FCM token saved successfully for user ${userId}`);
 };
 
 const verifyOtpRecord = async ({ mobileOrEmail, otp }) => {

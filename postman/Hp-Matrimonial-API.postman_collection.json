@@ -1,0 +1,1041 @@
+{
+  "info": {
+    "_postman_id": "8d5628af-9082-4e48-9efe-aa9a2d6d9508",
+    "name": "HP Matrimonial API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Phase 1 + Phase 2 APIs for Hari Prabodham Matrimonial"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "App",
+      "item": [
+        {
+          "name": "Bootstrap",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/app/bootstrap",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "app",
+                "bootstrap"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Home Content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/app/home",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "app",
+                "home"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobileOrEmail\": \"9979646602\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/otp/send",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "otp",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobileOrEmail\": \"9979646602\",\n  \"otp\": \"217106\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/otp/verify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "otp",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body?.data?.accessToken) pm.collectionVariables.set('accessToken', body.data.accessToken);",
+                  "if (body?.data?.refreshToken) pm.collectionVariables.set('refreshToken', body.data.refreshToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobileOrEmail\": \"9979646602\",\n  \"password\": \"Password@123\",\n  \"otp\": \"217106\",\n  \"fcmToken\": \"{{fcmToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body?.data?.accessToken) pm.collectionVariables.set('accessToken', body.data.accessToken);",
+                  "if (body?.data?.refreshToken) pm.collectionVariables.set('refreshToken', body.data.refreshToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"9876543210\",\n  \"password\": \"Password@123\",\n  \"fcmToken\": \"{{fcmToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login/password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                "password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login OTP",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body?.data?.accessToken) pm.collectionVariables.set('accessToken', body.data.accessToken);",
+                  "if (body?.data?.refreshToken) pm.collectionVariables.set('refreshToken', body.data.refreshToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobileOrEmail\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"fcmToken\": \"{{fcmToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login/otp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                "otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register FCM Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"{{fcmToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/fcm-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "fcm-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/token/refresh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "token",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"Password@123\",\n  \"newPassword\": \"Password@456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/password/change",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "password",
+                "change"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Basic",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Rajesh Patel\",\n  \"gender\": \"Male\",\n  \"date_of_birth\": \"1995-08-15\",\n  \"height\": \"5'10\\\"\",\n  \"marital_status\": \"Never Married\",\n  \"mother_tongue\": \"Gujarati\",\n  \"caste\": \"Leva Patel\",\n  \"city\": \"Surat\",\n  \"state\": \"Gujarat\",\n  \"country\": \"India\",\n  \"about_me\": \"Devout follower and IT professional\",\n  \"income_range\": \"15L-20L\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/basic",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "basic"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Spiritual",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"karya_karta\": \"Rajesh Patel\",\n  \"pradesh\": \"Gujarat\",\n  \"bhagvadi\": \"Swami Brajeshwar\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/spiritual",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "spiritual"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Education Career",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"highest_education\": \"M.Tech Computer Science\",\n  \"institute\": \"IIT Bombay\",\n  \"occupation\": \"Senior Software Engineer\",\n  \"employer\": \"Tech Solutions Ltd\",\n  \"income_range\": \"15L-20L\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/education-career",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "education-career"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Family",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"father_name\": \"Mahesh Patel\",\n  \"father_occupation\": \"Business\",\n  \"mother_name\": \"Kokila Patel\",\n  \"mother_occupation\": \"Homemaker\",\n  \"siblings\": \"1 brother\",\n  \"family_type\": \"Joint\",\n  \"family_status\": \"Upper Middle\",\n  \"is_locked\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/family",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "family"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Partner Preferences",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"age_min\": 23,\n  \"age_max\": 29,\n  \"height_min\": \"5'2\\\"\",\n  \"height_max\": \"6'0\\\"\",\n  \"diet\": \"Vegetarian\",\n  \"marital_status\": \"Never Married\",\n  \"faith\": \"Hari Prabodham\",\n  \"caste_preference\": \"Leva Patel\",\n  \"state_preference\": \"Gujarat\",\n  \"education_preference\": \"Bachelors+\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/partner-preferences",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "partner-preferences"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Privacy",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"photo_locked\": true,\n  \"family_locked\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/privacy",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "privacy"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Local Photo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fileName\": \"profile_1.jpg\",\n  \"contentType\": \"image/jpeg\",\n  \"fileBase64\": \"<base64-image-content>\",\n  \"visibility\": \"locked\",\n  \"is_primary\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/photos/upload-local",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "photos",
+                "upload-local"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List My Photos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/photos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "photos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Primary Photo",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/photos/{{photoId}}/primary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "photos",
+                "{{photoId}}",
+                "primary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Photo",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/me/photos/{{photoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "me",
+                "photos",
+                "{{photoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Profile By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/profiles/{{profileId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "profiles",
+                "{{profileId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Discovery",
+      "item": [
+        {
+          "name": "List Profiles (Guest)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/discovery/profiles?page=1&limit=20&sortBy=recent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "discovery",
+                "profiles"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "recent"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Profiles (Authenticated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/discovery/profiles?q=rajesh&caste=Leva Patel&state=Gujarat&city=Surat&ageMin=23&ageMax=35&page=1&limit=20&sortBy=recent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "discovery",
+                "profiles"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "rajesh"
+                },
+                {
+                  "key": "caste",
+                  "value": "Leva Patel"
+                },
+                {
+                  "key": "state",
+                  "value": "Gujarat"
+                },
+                {
+                  "key": "city",
+                  "value": "Surat"
+                },
+                {
+                  "key": "ageMin",
+                  "value": "23"
+                },
+                {
+                  "key": "ageMax",
+                  "value": "35"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "recent"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Metadata",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/discovery/filters/meta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "discovery",
+                "filters",
+                "meta"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Private Access",
+      "item": [
+        {
+          "name": "Send Request",
+          "request": {
+            "description": "Send a private access request to a profile. Limit: 10 requests per month (only counts user-initiated requests).",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profileId\": \"{{profileUuid}}\",\n  \"message\": \"I would like to request access to your photos.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/private-access/requests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "private-access",
+                "requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Incoming Requests",
+          "request": {
+            "description": "List incoming requests. Each object includes a 'requester_profile' nested object with sender details.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/private-access/requests/incoming",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "private-access",
+                "requests",
+                "incoming"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sent Requests",
+          "request": {
+            "description": "List sent requests. Each object includes a 'target_profile' nested object with receiver details and age.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/private-access/requests/sent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "private-access",
+                "requests",
+                "sent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve/Reject",
+          "request": {
+            "description": "Approve or decline a request. Approving establishes mutual access (creates/updates a reciprocal record). Returns 'requester_profile' in data on approval.",
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"approve\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/private-access/requests/{{requestId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "private-access",
+                "requests",
+                "{{requestId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "fcmToken",
+      "value": ""
+    },
+    {
+      "key": "profileId",
+      "value": ""
+    },
+    {
+      "key": "photoId",
+      "value": ""
+    },
+    {
+      "key": "profileUuid",
+      "value": ""
+    },
+    {
+      "key": "requestId",
+      "value": ""
+    }
+  ]
+}

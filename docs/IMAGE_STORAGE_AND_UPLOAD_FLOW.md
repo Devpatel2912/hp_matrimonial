@@ -6,7 +6,7 @@ This document explains the complete image flow for backend + Flutter app.
 
 - **Local folder mode** (`STORAGE_PROVIDER=local`)
 - Files stored in `uploads/`
-- Served from `http://localhost:4000/uploads/...`
+- Served from `http://27.116.52.24:8093/uploads/...`
 
 - PostgreSQL stores only metadata in `profile_photos`:
   - `id`
@@ -28,7 +28,7 @@ Use these `.env` values:
 ```env
 STORAGE_PROVIDER=local
 STORAGE_LOCAL_DIR=uploads
-STORAGE_PUBLIC_BASE_URL=http://localhost:4000
+STORAGE_PUBLIC_BASE_URL=http://27.116.52.24:8093
 ```
 
 Upload API in local mode:

@@ -32,7 +32,7 @@ npm install
 npm run dev
 ```
 
-Base URL: `http://localhost:4000/api/v1`
+Base URL: `http://27.116.52.24:8093/api/v1`
 
 ## Local Folder (Default Image Storage)
 
@@ -40,7 +40,7 @@ Set in `.env`:
 ```env
 STORAGE_PROVIDER=local
 STORAGE_LOCAL_DIR=uploads
-STORAGE_PUBLIC_BASE_URL=http://localhost:4000
+STORAGE_PUBLIC_BASE_URL=http://27.116.52.24:8093
 ```
 
 Use API:

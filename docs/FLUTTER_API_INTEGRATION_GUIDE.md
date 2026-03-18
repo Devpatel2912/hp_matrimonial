@@ -4,9 +4,9 @@ This guide is for Flutter developers integrating with the Node.js backend APIs.
 
 ## 1) Base Setup
 
-- Base URL (local): `http://localhost:4000`
+- Base URL (local): `http://27.116.52.24:8093`
 - API prefix: `/api/v1`
-- Full base for requests: `http://localhost:4000/api/v1`
+- Full base for requests: `http://27.116.52.24:8093/api/v1`
 - Content type: `application/json`
 - Auth type: `Bearer <accessToken>`
 

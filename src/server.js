@@ -11,7 +11,7 @@ import { createApp } from "./app.js";
 import { testDbConnection } from "./config/db.js";
 import { validateEnv } from "./config/validateEnv.js";
 
-const PORT = Number(process.env.PORT || 4000);
+const PORT = Number(process.env.PORT || 8093);
 
 const start = async () => {
   validateEnv();

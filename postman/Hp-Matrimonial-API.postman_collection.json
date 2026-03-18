@@ -1007,7 +1007,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://localhost:4000"
+      "value": "http://27.116.52.24:8093"
     },
     {
       "key": "accessToken",

@@ -51,12 +51,15 @@ const getMyCompositeProfile = async (userId) => {
     `
       SELECT
         p.*,
+        u.mobile,
+        u.email,
         row_to_json(si.*) AS spiritual_info,
         row_to_json(ec.*) AS education_career,
         row_to_json(fd.*) AS family_details,
         row_to_json(pp.*) AS partner_preferences,
         row_to_json(m.*) AS membership
       FROM profiles p
+      LEFT JOIN users u ON u.id = p.user_id
       LEFT JOIN spiritual_info si ON si.user_id = p.user_id
       LEFT JOIN education_career ec ON ec.user_id = p.user_id
       LEFT JOIN family_details fd ON fd.user_id = p.user_id
@@ -178,6 +181,8 @@ export const getProfileById = async (req, res) => {
     `
       SELECT
         p.*,
+        u.mobile,
+        u.email,
         p.user_id AS profile_owner_user_id,
         row_to_json(si.*) AS spiritual_info,
         row_to_json(ec.*) AS education_career,
@@ -193,6 +198,7 @@ export const getProfileById = async (req, res) => {
           '[]'
         ) AS profile_photos
       FROM profiles p
+      LEFT JOIN users u ON u.id = p.user_id
       LEFT JOIN spiritual_info si ON si.user_id = p.user_id
       LEFT JOIN education_career ec ON ec.user_id = p.user_id
       LEFT JOIN family_details fd ON fd.user_id = p.user_id
